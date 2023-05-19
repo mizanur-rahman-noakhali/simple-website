@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .user{
+      background-color: blueviolet;
+      border-radius: 10px;
+      margin: 10px;
+      padding: 20px;
+      box-shadow: 5px 5px 10px gray;
+    }
+  </style>
+</head>
+<body>
+  <div id="user-container">
+
+  </div>
+  <script>
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(Response=>Response.json())
+    .then(data=> ShowUserName(data))
+
+    function ShowUserName(data){
+      let lists=""
+      data.forEach(user => {
+       lists=lists + `<div class="user">
+        <h1>${user.name}</h1>
+        <p>Email ${user.email}</p>
+        <p>${user.company.name}.${user.company.catchPhrase}.${user.company.bs}</p>
+          </div>` 
+       const div=document.getElementById('user-container');
+       div.innerHTML=lists;
+      });
+    }
+  </script>
+</body>
+</html>
